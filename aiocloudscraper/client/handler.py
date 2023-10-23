@@ -1,3 +1,0 @@
-class CfResponseHandler:
-    async def handle(self):
-        ...
