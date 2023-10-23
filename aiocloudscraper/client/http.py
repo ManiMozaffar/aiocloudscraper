@@ -27,6 +27,7 @@ class Client(AsyncClient):
         self,
         *,
         browser: Browser,
+        default_user_agent: str | None = None,
         solver: typing.Optional[AbstractCaptchaSolver] = None,
         interpreter: typing.Optional[JavaScriptInterpreter] = None,
         auth: typing.Optional[_types.AuthTypes] = None,
@@ -61,6 +62,7 @@ class Client(AsyncClient):
             browser=Browser.CHROME, cipher_suite=cipher_suite, ecdh_curve=ecdh_curve
         )
         self.interpreter = interpreter
+        self.default_user_agent = default_user_agent
 
         super().__init__(
             auth=auth,
@@ -211,6 +213,11 @@ class Client(AsyncClient):
 
     def inject_useragent(self, user_agent: str):
         self.user_agent = user_agent
+        if self.default_user_agent:
+            self.user_agent = self.default_user_agent
+        else:
+            self.user_agent = user_agent
+
         self.headers.update({"User-Agent": self.user_agent})
 
     def rotate_useragent(self):
