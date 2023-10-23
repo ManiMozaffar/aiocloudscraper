@@ -22,7 +22,7 @@ class NativeInterpreter(JavaScriptInterpreter):
                     ord(
                         domain[
                             JsonFuck(
-                                js_fuck_match[1][js_fuck_match[1].find('"("+p+")")}') + len('"("+p+")")}') : -2]
+                                js_fuck_match[1][js_fuck_match[1].find('"("+p+")")}') + len('"("+p+")")}') : -2]  # noqa
                             ).to_number()
                         ]
                     )
